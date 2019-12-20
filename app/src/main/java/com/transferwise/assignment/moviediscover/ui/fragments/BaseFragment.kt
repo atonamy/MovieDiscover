@@ -11,11 +11,12 @@ abstract class BaseFragment : BaseMvRxFragment() {
         requireActivity() as MainActivity
     }
 
-    protected fun showMenu(show: Boolean) =
-        if(show)
+    protected fun showMenu(show: Boolean) {
+        if (show)
             parentActivity.populateMenu()
         else
             parentActivity.removeMenu()
+    }
 
     protected fun setupToolbar(title: String, showBackButton: Boolean = false) {
         val activity = requireActivity()
