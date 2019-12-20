@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Movie Discover</string>
+
+    <string name="button_retry">RETRY</string>
+    <string name="panel_rating">RATING</string>
+    <string name="panel_trailer">TRAILER</string>
+    <string name="panel_website">WEBSITE</string>
+
+
+    <string name="menu_sort_by_vote">Sort By Votes</string>
+    <string name="menu_sort_by_revenue">Sort By Revenue</string>
+
+    <string name="error_message_generic">Something went wrong...</string>
+    <string name="error_no_website">This movie doesn\'t have website</string>
+    <string name="error_no_trailer">No any trailer available for this movie</string>
+</resources>

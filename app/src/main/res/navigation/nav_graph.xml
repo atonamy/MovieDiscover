@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/moviesFragment"
+>
+    <fragment
+            android:id="@+id/moviesFragment"
+            android:name="com.transferwise.assignment.moviediscover.ui.fragments.MoviesFragment"
+            android:label="@string/app_name">
+        <action android:id="@+id/showMovieDetails" app:destination="@id/movieDetailsFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/movieDetailsFragment"
+              android:name="com.transferwise.assignment.moviediscover.ui.fragments.MovieDetailsFragment"
+    >
+        <argument
+                android:name="movieId"
+                app:argType="long"
+        />
+        <argument
+                android:name="movieTitle"
+                app:argType="string"
+        />
+    </fragment>
+
+</navigation>

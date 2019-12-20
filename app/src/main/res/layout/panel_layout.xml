@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:circleview="http://schemas.android.com/apk/res-auto"
+>
+    <data>
+        <variable name="averageVotes" type="float"/>
+        <variable name="onTrailerClick" type="android.view.View.OnClickListener"/>
+        <variable name="onWebsiteClick" type="android.view.View.OnClickListener"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent">
+
+
+    <rjsv.circularview.CircleView
+            android:id="@+id/rating"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="14dp"
+            app:layout_constraintEnd_toStartOf="@id/youtube"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            circleview:suffixEnabled="false"
+            circleview:arcBorderColor="@color/colorPrimaryDark"
+            circleview:arcColor="@color/colorPrimary"
+            circleview:arcHasBorder="false"
+            circleview:arcWidth="4dp"
+            circleview:hasIndicator="false"
+            circleview:indicatorColor="@color/colorAccent"
+            circleview:indicatorRadius="6"
+            circleview:progressColor="@color/color_progress"
+            circleview:progressMaximumValue="10"
+            circleview:progressMinimumValue="0"
+            circleview:progressStepValue="0.1"
+            circleview:progressStepAsInteger="false"
+            circleview:progressWidth="15dp"
+            circleview:textColor="@color/colorPrimary"
+            circleview:textEnabled="true"
+            app:value="@{averageVotes}"
+            circleview:textSize="12sp"
+    />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/youtube"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:padding="1dp"
+            android:tint="@color/colorPrimary"
+            android:onClick="@{onTrailerClick}"
+            app:layout_constraintEnd_toStartOf="@id/website"
+            app:layout_constraintStart_toEndOf="@id/rating"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_youtube" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/website"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="12dp"
+            android:tint="@color/colorPrimary"
+            android:padding="1dp"
+            android:onClick="@{onWebsiteClick}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/youtube"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_website" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/votes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/panel_rating"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/rating"
+            app:layout_constraintStart_toStartOf="@id/rating"
+            app:layout_constraintTop_toBottomOf="@id/rating" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/trailer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:text="@string/panel_trailer"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"
+            android:onClick="@{onTrailerClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/youtube"
+            app:layout_constraintStart_toStartOf="@id/youtube"
+            app:layout_constraintTop_toBottomOf="@id/youtube" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:fontFamily="serif-monospace"
+            android:text="@string/panel_website"
+            android:textColor="@color/colorPrimary"
+            android:onClick="@{onWebsiteClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/website"
+            app:layout_constraintStart_toStartOf="@id/website"
+            app:layout_constraintTop_toBottomOf="@id/website"
+
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

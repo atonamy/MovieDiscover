@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        xmlns:bind="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+>
+    <data>
+        <import type="org.threeten.bp.format.DateTimeFormatter"/>
+        <import type="org.threeten.bp.format.FormatStyle"/>
+        <variable name="model" type="com.transferwise.assignment.moviediscover.data.model.MovieDetails" />
+        <variable name="imageBaseUrl" type="String"/>
+        <variable name="onTrailerClick" type="android.view.View.OnClickListener"/>
+        <variable name="onWebsiteClick" type="android.view.View.OnClickListener"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/movieDetailsView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:layout_marginBottom="5dp"
+    >
+
+
+        <View
+                android:id="@+id/center"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+        />
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/poster1"
+                android:layout_width="180dp"
+                android:layout_height="270dp"
+                android:padding="0dp"
+                android:layout_marginTop="5dp"
+                app:failureImage="@drawable/ic_image_failed"
+                fresco:roundedCornerRadius="10dp"
+                fresco:actualImageScaleType="fitCenter"
+                app:layout_constraintRight_toLeftOf="@id/center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl='@{imageBaseUrl + model.posterUri}'
+        />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/poster2"
+                android:layout_width="180dp"
+                android:layout_height="270dp"
+                android:padding="0dp"
+                android:layout_marginTop="5dp"
+                app:failureImage="@drawable/ic_image_failed"
+                fresco:roundedCornerRadius="10dp"
+                fresco:actualImageScaleType="centerCrop"
+                app:layout_constraintLeft_toRightOf="@id/center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:imageUrl='@{imageBaseUrl + model.backdropUri}'
+        />
+
+        <View
+                android:id="@+id/bg"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@drawable/bg_movie_details"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="260dp"
+
+        />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                tools:text="Movie Title"
+                android:text="@{model.title}"
+                android:textColor="#000000"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintTop_toTopOf="@id/bg"
+        />
+
+
+        <View
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="24dp"
+                android:background="#cccccc"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintTop_toBottomOf="@id/title1" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                tools:text="Original Movie Title"
+                android:text="@{model.originalTitle}"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+        <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="0.7dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="24dp"
+                android:background="#cccccc"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintTop_toBottomOf="@id/title2" />
+
+        <TextView
+                android:id="@+id/release"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="serif-monospace"
+                android:gravity="center"
+                tools:text="June, 1889"
+                android:text='@{model.releaseDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))}'
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
+        />
+
+
+
+        <include
+                android:id="@+id/panel"
+                layout="@layout/panel_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintRight_toRightOf="@id/bg"
+                app:layout_constraintLeft_toLeftOf="@id/bg"
+                app:layout_constraintTop_toBottomOf="@id/release"
+                bind:averageVotes="@{model.averageVotes}"
+                bind:onTrailerClick="@{onTrailerClick}"
+                bind:onWebsiteClick="@{onWebsiteClick}"
+        />
+
+        <TextView
+                android:id="@+id/description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:nestedScrollingEnabled="false"
+                android:padding="14dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                tools:text="The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an idealized village.
+\n\n
+It has been in the permanent collection of the Museum of Modern Art in New York City since 1941, acquired through the Lillie P. Bliss Bequest. Regarded as among Van Gogh's finest works, The Starry Night is one of the most recognized paintings in the history of Western culture
+\n\n
+In the aftermath of the 23 December 1888 breakdown that resulted in the self-mutilation of his left ear,Van Gogh voluntarily admitted himself to the Saint-Paul-de-Mausole lunatic asylum on 8 May 1889. Housed in a former monastery, Saint-Paul-de-Mausole catered to the wealthy and was less than half full when Van Gogh arrived, allowing him to occupy not only a second-story bedroom but also a ground-floor room for use as a painting studio
+
+"
+                android:text="@{model.overview}"
+                android:textSize="17sp"
+                android:textStyle="italic"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/panel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

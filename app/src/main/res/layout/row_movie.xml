@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fresco="http://schemas.android.com/apk/res-auto"
+        xmlns:circleview="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <import type="org.threeten.bp.format.DateTimeFormatter"/>
+        <import type="org.threeten.bp.format.FormatStyle"/>
+        <import type="android.view.View" />
+        <variable name="model" type="com.transferwise.assignment.moviediscover.data.model.Movie" />
+        <variable name="imageBaseUrl" type="String"/>
+        <variable name="isLeft" type="boolean"/>
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/movieView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_marginLeft="@{isLeft ? @dimen/dp_05 : @dimen/dp_00}"
+        android:layout_marginBottom="0.5dp"
+        android:padding="5dp"
+        android:background="@color/colorPrimaryDark"
+>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/poster"
+            android:layout_width="180dp"
+            android:layout_height="270dp"
+            app:failureImage="@drawable/ic_image_failed"
+            fresco:roundedCornerRadius="10dp"
+            fresco:actualImageScaleType="fitCenter"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:imageUrl='@{imageBaseUrl + model.posterUri}'
+            />
+
+
+    <View
+            android:background="@drawable/bg_rating"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:alpha="0.6"
+            android:visibility="@{model.averageVotes > 0 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintRight_toRightOf="@id/poster"
+            app:layout_constraintTop_toTopOf="@+id/poster"
+            />
+
+    <rjsv.circularview.CircleView
+            android:id="@+id/rating"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:visibility="@{model.averageVotes > 0 ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintRight_toRightOf="@id/poster"
+            app:layout_constraintTop_toTopOf="@+id/poster"
+            circleview:suffixEnabled="false"
+            circleview:arcBorderColor="@color/colorPrimaryDark"
+            circleview:arcColor="@color/colorPrimary"
+            circleview:arcHasBorder="false"
+            circleview:arcWidth="4dp"
+            circleview:hasIndicator="false"
+            circleview:indicatorColor="@color/colorAccent"
+            circleview:indicatorRadius="6"
+            circleview:progressColor="@color/color_progress"
+            circleview:progressMaximumValue="10"
+            circleview:progressMinimumValue="0"
+            circleview:progressStepValue="0.1"
+            circleview:progressStepAsInteger="false"
+            circleview:progressWidth="15dp"
+            circleview:textColor="@color/colorPrimary"
+            circleview:textEnabled="true"
+            android:alpha="0.8"
+            app:value="@{model.averageVotes}"
+            circleview:textSize="12sp"
+    />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            tools:text="Some description"
+            app:layout_constraintTop_toBottomOf="@+id/poster"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text='@{model.title}'
+            android:textSize="16sp"
+            android:textColor="@color/colorPrimary"
+    />
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/release"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            tools:text="Release date"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text='@{model.releaseDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG))}'
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="italic"
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
